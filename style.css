@@ -1,0 +1,29 @@
+.calc-container {
+    display: flex;
+    justify-content: center;
+}
+
+.calculator {
+    display: grid;
+    grid-template-columns: repeat(4, 100px);
+    grid-template-rows: 150px 100px 100px 100px 100px 100px;
+    width: 400px;
+    border: 1px solid black;
+}
+
+.display-screen {
+    grid-column: 1/5;
+    font-size: 48px;
+    text-align: right;
+    padding: 50px 10px 0px 0px;
+    border-bottom: 1px solid #cccccc;
+}
+
+.button-clear {
+    grid-column: 1/span 3;
+}
+
+.button {
+    border: none;
+    font-size: 24px;
+}
