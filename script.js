@@ -3,7 +3,7 @@ const displayScreen = document.querySelector('.display-screen');
 let isOperatorActive = false;
 let firstNum = 0;
 let operator = '';
-let isMaxSize = false;
+let isScreenFull = false;
 
 const clearButton = document.querySelector('.button-clear');
 clearButton.addEventListener('click', () => {
@@ -11,7 +11,7 @@ clearButton.addEventListener('click', () => {
     firstNum = 0;
     operator = '';
     isOperatorActive = false;
-    isMaxSize = false;
+    isScreenFull = false;
 });
 
 const deleteButton = document.querySelector('.button-delete');
@@ -19,8 +19,8 @@ deleteButton.addEventListener('click', () => {
     if (displayScreen.textContent !== '0') {
         displayScreen.textContent = displayScreen.textContent.substring(0,
             displayScreen.textContent.length - 1);
-        
-        isMaxSize = false;
+
+        isScreenFull = false;
     }
     if (displayScreen.textContent === '') {
         displayScreen.textContent = '0';
@@ -41,7 +41,7 @@ const numberButtons = document.querySelectorAll('.button-number');
 numberButtons.forEach(button => {
     button.addEventListener('click', () => {
         if (displayScreen.textContent.length === 16) {
-            isMaxSize = true;
+            isScreenFull = true;
         }
         if (displayScreen.textContent === '0') {
             displayScreen.textContent = '';
@@ -50,10 +50,10 @@ numberButtons.forEach(button => {
             displayScreen.textContent = '';
             displayScreen.textContent += button.textContent;
             isOperatorActive = false;
-            isMaxSize = false;
+            isScreenFull = false;
         }
         else {
-            if (!isMaxSize) {
+            if (!isScreenFull) {
                 displayScreen.textContent += button.textContent;
             }
         }
@@ -95,25 +95,40 @@ divideButton.addEventListener('click', () => {
     isOperatorActive = true;
 });
 
+function checkOverflow(aResult) {
+    let resultStr = aResult.toString();
+
+    if (resultStr.includes('.')) {
+        let decimalPlaces = resultStr.substring(resultStr.indexOf('.') + 1).length;
+        return aResult.toFixed(decimalPlaces - 1);
+    }
+
+    if (resultStr.length > 16) {
+        return 'overflow';
+    }
+
+    return aResult;
+}
+
 function equals() {
     if (operator === '+') {
         let result = firstNum + parseFloat(displayScreen.textContent);
-        let resultStr = result.toString();
 
-        // if (resultStr.includes('.')) {
-        //     let decimalPlaces = resultStr.substring(resultStr.indexOf('.') + 1);
-        //     result = result.toFixed(parseInt(decimalPlaces));
-        // }
-
-        displayScreen.textContent = result;
+        displayScreen.textContent = checkOverflow(result);
     }
     if (operator === '-') {
-        displayScreen.textContent = firstNum - parseFloat(displayScreen.textContent);
+        let result = firstNum - parseFloat(displayScreen.textContent);
+
+        displayScreen.textContent = checkOverflow(result);
     }
     if (operator === '*') {
-        displayScreen.textContent = firstNum * parseFloat(displayScreen.textContent);
+        let result = firstNum * parseFloat(displayScreen.textContent);
+
+        displayScreen.textContent = checkOverflow(result);
     }
     if (operator === '/') {
-        displayScreen.textContent = firstNum / parseFloat(displayScreen.textContent);
+        let result = firstNum / parseFloat(displayScreen.textContent);
+
+        displayScreen.textContent = checkOverflow(result);
     }
 }
