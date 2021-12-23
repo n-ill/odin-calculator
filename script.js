@@ -3,6 +3,7 @@ const displayScreen = document.querySelector('.display-screen');
 let isOperatorActive = false;
 let firstNum = 0;
 let operator = '';
+let isMaxSize = false;
 
 const clearButton = document.querySelector('.button-clear');
 clearButton.addEventListener('click', () => {
@@ -25,6 +26,9 @@ decimalButton.addEventListener('click', () => {
 const numberButtons = document.querySelectorAll('.button-number');
 numberButtons.forEach(button => {
     button.addEventListener('click', () => {
+        if (displayScreen.textContent.length === 16) {
+            isMaxSize = true;
+        }
         if (displayScreen.textContent === '0') {
             displayScreen.textContent = '';
         }
@@ -32,9 +36,12 @@ numberButtons.forEach(button => {
             displayScreen.textContent = '';
             displayScreen.textContent += button.textContent;
             isOperatorActive = false;
+            isMaxSize = false;
         }
         else {
-            displayScreen.textContent += button.textContent;
+            if (!isMaxSize) {
+                displayScreen.textContent += button.textContent;
+            }
         }
     })
 });
@@ -76,7 +83,15 @@ divideButton.addEventListener('click', () => {
 
 function equals() {
     if (operator === '+') {
-        displayScreen.textContent = firstNum + parseFloat(displayScreen.textContent);
+        let result = firstNum + parseFloat(displayScreen.textContent);
+        let resultStr = result.toString();
+
+        // if (resultStr.includes('.')) {
+        //     let decimalPlaces = resultStr.substring(resultStr.indexOf('.') + 1);
+        //     result = result.toFixed(parseInt(decimalPlaces));
+        // }
+
+        displayScreen.textContent = result;
     }
     if (operator === '-') {
         displayScreen.textContent = firstNum - parseFloat(displayScreen.textContent);
