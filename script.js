@@ -115,20 +115,28 @@ function equals() {
         let result = firstNum + parseFloat(displayScreen.textContent);
 
         displayScreen.textContent = checkOverflow(result);
+
+        firstNum = 0;
     }
     if (operator === '-') {
         let result = firstNum - parseFloat(displayScreen.textContent);
 
         displayScreen.textContent = checkOverflow(result);
+
+        firstNum = 0;
     }
     if (operator === '*') {
         let result = firstNum * parseFloat(displayScreen.textContent);
 
         displayScreen.textContent = checkOverflow(result);
+        
+        firstNum = 0;
     }
     if (operator === '/') {
         let result = firstNum / parseFloat(displayScreen.textContent);
 
         displayScreen.textContent = checkOverflow(result);
+
+        firstNum = 0;
     }
 }
