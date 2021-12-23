@@ -34,51 +34,47 @@ equalButton.addEventListener('click', equals);
 
 const addButton = document.querySelector('.button-add');
 addButton.addEventListener('click', () => {
-    firstNum = parseInt(displayScreen.textContent);
+    equals();
     operator = '+';
+    firstNum = parseInt(displayScreen.textContent);
     isOperatorActive = true;
-    addButton.style.fontSize = '60px';
 });
 
 const subButton = document.querySelector('.button-sub');
 subButton.addEventListener('click', () => {
-    firstNum = parseInt(displayScreen.textContent);
+    equals();
     operator = '-';
+    firstNum = parseInt(displayScreen.textContent);
     isOperatorActive = true;
-    subButton.style.fontSize = '60px';
 });
 
 const multButton = document.querySelector('.button-mult');
 multButton.addEventListener('click', () => {
-    firstNum = parseInt(displayScreen.textContent);
+    equals();
     operator = '*';
+    firstNum = parseInt(displayScreen.textContent);
     isOperatorActive = true;
-    multButton.style.fontSize = '60px';
 });
 
 const divideButton = document.querySelector('.button-divide');
 divideButton.addEventListener('click', () => {
-    firstNum = parseInt(displayScreen.textContent);
+    equals();
     operator = '/';
+    firstNum = parseInt(displayScreen.textContent);
     isOperatorActive = true;
-    divideButton.style.fontSize = '60px';
 });
 
 function equals() {
     if (operator === '+') {
         displayScreen.textContent = firstNum + parseInt(displayScreen.textContent);
-        addButton.style.fontSize = '24px';
     }
     if (operator === '-') {
         displayScreen.textContent = firstNum - parseInt(displayScreen.textContent);
-        subButton.style.fontSize = '24px';
     }
     if (operator === '*') {
         displayScreen.textContent = firstNum * parseInt(displayScreen.textContent);
-        multButton.style.fontSize = '24px';
     }
     if (operator === '/') {
         displayScreen.textContent = firstNum / parseInt(displayScreen.textContent);
-        divideButton.style.fontSize = '24px';
     }
 }
