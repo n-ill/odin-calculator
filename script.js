@@ -19,6 +19,8 @@ deleteButton.addEventListener('click', () => {
     if (displayScreen.textContent !== '0') {
         displayScreen.textContent = displayScreen.textContent.substring(0,
             displayScreen.textContent.length - 1);
+        
+        isMaxSize = false;
     }
     if (displayScreen.textContent === '') {
         displayScreen.textContent = '0';
