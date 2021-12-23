@@ -30,11 +30,31 @@ subButton.addEventListener('click', () => {
     displayScreen.textContent = '';
 });
 
+const multButton = document.querySelector('.button-mult');
+multButton.addEventListener('click', () => {
+    firstNum = parseInt(displayScreen.textContent);
+    operator = '*';
+    displayScreen.textContent = '';
+});
+
+const divideButton = document.querySelector('.button-divide');
+divideButton.addEventListener('click', () => {
+    firstNum = parseInt(displayScreen.textContent);
+    operator = '/';
+    displayScreen.textContent = '';
+});
+
 function equals() {
     if (operator === '+') {
         displayScreen.textContent = firstNum + parseInt(displayScreen.textContent);
     }
     if (operator === '-') {
         displayScreen.textContent = firstNum - parseInt(displayScreen.textContent);
+    }
+    if (operator === '*') {
+        displayScreen.textContent = firstNum * parseInt(displayScreen.textContent);
+    }
+    if (operator === '/') {
+        displayScreen.textContent = firstNum / parseInt(displayScreen.textContent);
     }
 }
