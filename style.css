@@ -16,7 +16,7 @@
     font-size: 48px;
     text-align: right;
     padding: 50px 10px 0px 0px;
-    border-bottom: 1px solid #cccccc;
+    border: 1px solid black;
 }
 
 .button-clear {
@@ -24,6 +24,5 @@
 }
 
 .button {
-    border: none;
     font-size: 24px;
 }
