@@ -11,6 +11,18 @@ clearButton.addEventListener('click', () => {
     firstNum = 0;
     operator = '';
     isOperatorActive = false;
+    isMaxSize = false;
+});
+
+const deleteButton = document.querySelector('.button-delete');
+deleteButton.addEventListener('click', () => {
+    if (displayScreen.textContent !== '0') {
+        displayScreen.textContent = displayScreen.textContent.substring(0,
+            displayScreen.textContent.length - 1);
+    }
+    if (displayScreen.textContent === '') {
+        displayScreen.textContent = '0';
+    }
 });
 
 const decimalButton = document.querySelector('.button-decimal');
@@ -103,5 +115,3 @@ function equals() {
         displayScreen.textContent = firstNum / parseFloat(displayScreen.textContent);
     }
 }
-
-
